@@ -10,12 +10,15 @@ doctrine:
         # configure these for your database server
         driver: 'pdo_mysql'
         server_version: '5.7'
-        charset: utf8mb4
+        charset: utf8
         default_table_options:
-            charset: utf8mb4
-            collate: utf8mb4_unicode_ci
-
-        url: '%env(resolve:DATABASE_URL)%'
+            charset: utf8
+            collate: utf8_general_ci
+        host: '%env(DATABASE_HOST)%'
+        user: '%env(DATABASE_USER)%'
+        password: '%env(DATABASE_PASSWORD)%'
+        dbname: '%env(DATABASE_NAME)%'
+        # url: '%env(resolve:DATABASE_URL)%'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore

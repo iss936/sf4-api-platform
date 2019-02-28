@@ -1,0 +1,7 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_port:     3306
+    database_host:     '%env(DATABASE_HOST)%'
+    database_name:     '%env(DATABASE_NAME)%'
+    database_user:     '%env(DATABASE_USER)%'
+    database_password: '%env(DATABASE_PASSWORD)%'
