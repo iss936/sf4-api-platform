@@ -1,0 +1,10 @@
+FROM ubuntu:16.04
+
+RUN apt-get -y update
+RUN apt-get -y install apache2 libapache2-mod-fcgid
+RUN apt-get -y install software-properties-common
+#echo  "" | add-apt-repository ppa:ondrej/apache2
+#apt-get -y update
+#apt-get -y upgrade apache2
+RUN a2enmod alias actions auth_basic env mime setenvif negotiation rewrite proxy proxy_connect proxy_http expires deflate authz_host proxy_balancer headers proxy_fcgi fcgid
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
