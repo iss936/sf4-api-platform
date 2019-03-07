@@ -16,5 +16,5 @@ symfony.lock
 /vendor/*
 
 #Manage docker
-!docker/mysql/.gitkeep
 docker/mysql/*
+!docker/mysql/.gitkeep
