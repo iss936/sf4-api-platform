@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ApiResource(attributes={"formats"={"json"}}, normalizationContext={"groups"={"public"}})
  */
 class User
 {
@@ -19,58 +22,75 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"public"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"public"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"public"})
      */
     private $dateOfBirth;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"public"})
      */
     private $dateOfCreation;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"public"})
      */
     private $street;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"public"})
      */
     private $postalCode;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"public"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"public"})
      */
     private $mobileNumber;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"public"})
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(name="num_siren", type="string", length=255, nullable=true)
+     * @Groups({"public"})
      */
-    private $siren;
+    private $numSiren;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(name="num_siret", type="string", length=255, nullable=true)
+     * @Groups({"public"})
      */
-    private $siret;
+    private $numSiret;
+
+    /**
+     * @ORM\Column(name="num_assoc", type="string", length=255)
+     * @Groups({"public"})
+     */
+    private $numAssoc;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -91,8 +111,7 @@ class User
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $lastAuthentication;
-
-    
+   
 
     /**
      * @return mixed
@@ -297,19 +316,19 @@ class User
     /**
      * @return mixed
      */
-    public function getSiren()
+    public function getNumSiren()
     {
-        return $this->siren;
+        return $this->numSiren;
     }
 
     /**
-     * @param mixed $siren
+     * @param mixed $numSiren
      *
      * @return self
      */
-    public function setSiren($siren)
+    public function setNumSiren($numSiren)
     {
-        $this->siren = $siren;
+        $this->numSiren = $numSiren;
 
         return $this;
     }
@@ -317,19 +336,39 @@ class User
     /**
      * @return mixed
      */
-    public function getSiret()
+    public function getNumSiret()
     {
-        return $this->siret;
+        return $this->numSiret;
     }
 
     /**
-     * @param mixed $siret
+     * @param mixed $numSiret
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setNumSiret($numSiret)
     {
-        $this->siret = $siret;
+        $this->numSiret = $numSiret;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumAssoc()
+    {
+        return $this->numAssoc;
+    }
+
+    /**
+     * @param mixed $numAssoc
+     *
+     * @return self
+     */
+    public function setNumAssoc($numAssoc)
+    {
+        $this->numAssoc = $numAssoc;
 
         return $this;
     }
