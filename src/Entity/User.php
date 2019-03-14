@@ -6,10 +6,17 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+//collectionOperations={"get,post"},
+
 /**
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ApiResource(attributes={"formats"={"json"}}, normalizationContext={"groups"={"public"}})
+ * @ApiResource(
+ *              itemOperations={"get","put"},
+ *              attributes={"formats"={"json"}}, 
+ *              normalizationContext={"groups"={"public"}}
+ *              
+ *              )
  */
 class User
 {
