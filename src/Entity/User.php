@@ -5,17 +5,29 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Controller\Api\UserApiController;
 
 //collectionOperations={"get,post"},
+// "denormalizationContext"={"groups"={"public"}} => Le group de donnée que l'on doit envoyé au serveur
 
 /**
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ApiResource(
- *              itemOperations={"get","put"},
- *              attributes={"formats"={"json"}}, 
- *              normalizationContext={"groups"={"public"}}
- *              
+ *            normalizationContext={"groups"={"public"}},
+ *            denormalizationContext={"groups"={"base"}},
+ *            collectionOperations={"get","post"},
+ *             itemOperations={
+ *               "get",
+ *               "update_password"={
+ *                  "method"="POST",
+ *                  "path"="/update-password/{id}",
+ *                  "controller"=UserApiController::class,
+ *                  "normalization_context"={"groups"={"public"}},
+ *                  "denormalizationContext"={"groups"={"pwd"}}
+ *                }
+ *              },
+ *              attributes={"formats"={"json"}}
  *              )
  */
 class User
@@ -77,7 +89,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"public"})
+     * @Groups({"public","pwd"})
      */
     private $email;
 
@@ -101,6 +113,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"pwd"})
      */
     private $password;
 
