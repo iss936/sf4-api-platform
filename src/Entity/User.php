@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\Api\UserApiController;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 //collectionOperations={"get,post"},
 // "denormalizationContext"={"groups"={"public"}} => Le group de donnée que l'on doit envoyé au serveur
@@ -29,6 +31,7 @@ use App\Controller\Api\UserApiController;
  *              },
  *              attributes={"formats"={"json"}}
  *              )
+ * @ApiFilter(SearchFilter::class, properties={"name": "start"})
  */
 class User
 {
