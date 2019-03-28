@@ -14,6 +14,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 // "denormalizationContext"={"groups"={"public"}} => Le group de donnée que l'on doit envoyé au serveur
 
 /**
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ApiResource(
  *            normalizationContext={"groups"={"public"}},
  *            denormalizationContext={"groups"={"base"}},
@@ -39,7 +41,6 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *                  "normalization_context"={"groups"={"public"}},
  *                  "denormalizationContext"={"groups"={"pwd"}}
  *                },
- *                "put"
  *              },
  *              attributes={"formats"={"json"}}
  *              )
