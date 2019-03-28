@@ -37,9 +37,9 @@ final class RandomFilter extends AbstractContextAwareFilter
 	// This function is only used to hook in documentation generators (supported by Swagger and Hydra)
 	public function getDescription(string $resourceClass): array
 	{
-	    if (!$this->properties) {
-	        return [];
-	    }
+	    // if (!$this->properties) {
+	    //     return [];
+	    // }
 
 	    $description = [
 	    	'random' => [
@@ -47,7 +47,7 @@ final class RandomFilter extends AbstractContextAwareFilter
 	            'type' => 'boolean',
 	            'required' => false,
 	            'swagger' => [
-	                'description' => '!',
+	                'description' => 'If value=1 return all products order by random',
 	                'name' => 'Random',
 	                'type' => 'Boolean',
 	            ],

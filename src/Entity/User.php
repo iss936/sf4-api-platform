@@ -7,19 +7,30 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\Api\UserApiController;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 //collectionOperations={"get,post"},
 // "denormalizationContext"={"groups"={"public"}} => Le group de donnée que l'on doit envoyé au serveur
 
 /**
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ApiResource(
  *            normalizationContext={"groups"={"public"}},
  *            denormalizationContext={"groups"={"base"}},
- *            collectionOperations={"get","post"},
- *             itemOperations={
+ *            collectionOperations={
+ *                "get"={
+ *                    "method"="GET",
+ *                    "swagger_context" = {
+ *                        "parameters" = {
+ *                        {
+ *                          "name" = "name", "in" = "query", "description" = "possiblité d'être filtré LIKE xx%", "type" : "string"
+ *                        }
+ *                    }
+ *                }
+ *             },
+ *             "post"
+ *            },
+ *            itemOperations={
  *               "get",
  *               "update_password"={
  *                  "method"="POST",
@@ -27,7 +38,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *                  "controller"=UserApiController::class,
  *                  "normalization_context"={"groups"={"public"}},
  *                  "denormalizationContext"={"groups"={"pwd"}}
- *                }
+ *                },
+ *                "put"
  *              },
  *              attributes={"formats"={"json"}}
  *              )
